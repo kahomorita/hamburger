@@ -1,0 +1,149 @@
+/* ＝＝＝＝＝リセット＝＝＝＝＝ */
+
+button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    appearance: none;
+}
+
+
+
+body {
+
+    background: #f1e4c6;
+}
+.container_box {
+    position: relative;
+}
+
+.main_img {
+    width: 100%;
+    max-width: 1190px;
+    opacity: 0.5;
+}
+
+.img_logo {
+    color:#ffffff;
+    position: absolute;
+    top:15%;
+    left:10%;
+    font-size: 24px;
+
+}
+
+.box_wrap {
+    padding: 20px;
+}
+
+.box {
+    padding: 10px;
+    background: #ffffff;
+    width: 300px;
+    margin: 50px auto;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.4);
+}
+
+.box a {
+    color: #af3535;
+    font-weight: bold;
+}
+
+.box a:hover {
+    color: #d18585;
+}
+
+
+.post_img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+  }
+
+.hamburger_icon {
+    width: 24px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+footer {
+    height: 200px;
+    background:#c23e3e;
+}
+
+
+/* =====投稿画面（form.blade.php）===== */
+
+.form_box,.show_box{
+    width: 90%;
+    background: #ffffff;
+    margin: 50px auto;
+    padding:100px;
+}
+
+.form_box p ,.show_box p{
+    color: #a5a5a5;
+}
+
+.form_box .new_post {
+    text-align: center;
+    font-size: 32px;
+    color: #c23e3e;
+}
+
+input,textarea,select {
+    margin-bottom: 30px;
+}
+
+input,textarea {
+    width: 100%;
+    line-height: 40px;
+}
+
+
+/* ＝＝＝＝詳細ページ＝＝＝＝ */
+
+.show_box .show_name {
+    font-size: 28px;
+    color: #525252;
+}
+
+.show_img {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.fa-heart {
+    color: #df5093;
+}
+
+
+/* ＝＝＝＝footer＝＝＝＝ */
+
+footer {
+    padding: 100px 50px;
+}
+
+footer p {
+    color: #ffffff;
+}
+
+.TOP{
+    text-align: right;
+    display: block;
+}
+
+.fa-home {
+    color: #ffffff;
+    margin-right: 10px;
+}
+
+.fa-star:nth-child(2){
+    color: #163ff3;
+}
