@@ -13,6 +13,7 @@ class Post extends Model
 
     public function like_by()
     {
+ここいきなりLike使ってるんで、一応上で他のファイルみたいにLikeモデルをuseで宣言してもらっていいですか？
       return Like::where('user_id', \Auth::user()->id)->first();
     }
 }
