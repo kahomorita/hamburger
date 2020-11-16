@@ -34,6 +34,8 @@
       {!! Form::close() !!}
 
 @endif
+<a href="{{ route('post_edit',[$post->id]) }}" style="color:blue;">編集</a>
+
 </div>
 
 

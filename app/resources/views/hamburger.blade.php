@@ -3,9 +3,9 @@
 
 @section('content')
 
-   <div class="container_box">
-	   <img src="img/IMG_7134.JPG" class="main_img">
-	   <div class="img_logo">大阪のハンバーガー。</div>
+    <div class="container_box">
+        <img src="img/IMG_7134.JPG" class="main_img">
+	    <div class="img_logo">大阪のハンバーガー。</div>
 	   <div class="mx-auto" style="max-width:1200px">
 
 		   <!-- <h1 style="color:#303030; text-align:center; font-size:1.2em;
@@ -21,7 +21,7 @@
                         </div>
                     @endforeach
 
-                    
+
 
 			   </div>
 		   </div>

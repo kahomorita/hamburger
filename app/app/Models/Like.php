@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use kanazaca\CounterCache\CounterCache;
 use App\Http\Controllers\hamburgerController;
+use App\Models\User;
 
 class Like extends Model
 {

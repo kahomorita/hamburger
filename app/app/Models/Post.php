@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Models;  //名前空間
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Like;
 
 class Post extends Model
 {

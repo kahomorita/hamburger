@@ -51,7 +51,7 @@ class hamburgerController extends Controller
         $authUser = Auth::user();
         $post = Post::find($id);
 
-        $like = $post->likes()->where('user_id', Auth::user()->id)->first();
+        $like = $post->like_by()->where('user_id', Auth::user()->id)->first();
 
         return view ('show',[
             'authUser' => $authUser,
@@ -87,5 +87,22 @@ class hamburgerController extends Controller
             dd($e);
         }
       }
+
+    public function edit(Request $request) {
+
+        $post = Post::find($request->id);
+        return route('post_edit',['post' => $post]);
+    }
+
+    public function update(Request $request)
+{
+    $post = Post::find($request->id);
+    $form = $request->all();
+    unset($form['_token']);
+    $post->fill($form)->save();
+    return redirect('/');
+}
+
+
 
 }
