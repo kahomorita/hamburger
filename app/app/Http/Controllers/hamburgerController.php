@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Like;
 use Illuminate\Http\Request;
+use App\Http\Requests\PostFormRequest;
 use Illuminate\Support\Facades\DB;
 use App\Models\Detail;
 
@@ -12,8 +13,8 @@ use Illuminate\Support\Facades\Auth;
 class hamburgerController extends Controller
 {
 
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
+
         $posts = DB::select('select * from posts');
         // $posts = Post::Paginate(6);
         return view('hamburger',['posts'=>$posts]);
@@ -24,34 +25,47 @@ class hamburgerController extends Controller
         return view('form');
     }
 
-    public function store(Request $request)
-    {
-        $posts = DB::select('select * from posts');
-        return view('hamburger',['posts'=>$posts]);
+// ＝＝＝＝記事投稿＝＝＝＝
+    public function store(Request $request) {
 
-        // dd($request->file('image'));
+        \DB::beginTransaction();
+        try {
+        $posts = DB::select('select * from posts');
+
+
         $filename='';
         if($request->hasFile('image')) {
 
             $filename=$request->file('image')->store('/img',['disk'=>'public']);
         }
         $item = [
+            'user_id'=>Auth::id(),
             'name'=>$request->name,
             'price'=>$request->price,
             'detail'=>$request->detail,
             'imgpath'=>$filename,
         ];
-        DB::insert('insert into posts(name,price,detail,imgpath)
-        values(:name,:price,:detail,:imgpath)',$item);
+        DB::insert('insert into posts(user_id,name,price,detail,imgpath)
+        values(:user_id,:name,:price,:detail,:imgpath)',$item);
+        \DB::commit();
+
+        } catch(\Throwable $e) {
+        \DB::rollback();
+        abort(500);
+    }
+
+        \Session::flash('err_msg','投稿しました！');
         return redirect('/');
     }
 
+
+// ＝＝＝＝投稿詳細画面表示＝＝＝＝＝
     public function show(Request $request,$id,Post $post) {
 
         $authUser = Auth::user();
         $post = Post::find($id);
 
-        $like = $post->like_by()->where('user_id', Auth::user()->id)->first();
+        $like = $post->likes()->where('user_id', Auth::user()->id)->first();
 
         return view ('show',[
             'authUser' => $authUser,
@@ -60,8 +74,10 @@ class hamburgerController extends Controller
         ]);
     }
 
-    public function like(Request $request, $postId)
-    {
+
+// ＝＝＝＝いいねをつける＝＝＝＝
+    public function like(Request $request, $postId) {
+
         Like::create(
             array(
             'user_id' => Auth::user()->id,
@@ -75,34 +91,74 @@ class hamburgerController extends Controller
             ->action('hamburgerController@show', $post->id);
     }
 
+
+
+// ＝＝＝＝いいねを消す＝＝＝＝
     public function unlike($postId, $likeId) {
 
         try{
             $post = Post::findOrFail($postId);
-            $post->like_by()->findOrFail($likeId)->delete();
+
+            Like::findOrFail($likeId)->delete();
             return redirect()
             ->route('hamburger.show', $postId);
 
         }catch(Exception $e){
             dd($e);
         }
-      }
-
-    public function edit(Request $request) {
-
-        $post = Post::find($request->id);
-        return route('post_edit',['post' => $post]);
     }
 
-    public function update(Request $request)
-{
-    $post = Post::find($request->id);
-    $form = $request->all();
-    unset($form['_token']);
-    $post->fill($form)->save();
-    return redirect('/');
+
+// ＝＝＝＝記事編集＝＝＝＝
+    public function edit(Request $request,$id,Post $post) {
+
+        $post = Post::find($id);
+
+        if(is_null($post)) {
+            \Session::flash('err_msg','データがありません。');
+            return redirect(route('hamburger.show'));
+        }
+
+        return view('edit',['post'=>$post]);
+    }
+
+
+// ＝＝＝＝編集して記事の更新＝＝＝＝
+    public function update(Request $request) {
+
+        $filename='';
+
+        if($request->hasFile('image')) {
+
+            $filename=$request->file('image')->store('/img',['disk'=>'public']);
+        }
+
+        $post = Post::find($request->id);
+        $post->user_id = Auth::id();
+        $post->name = $request->name;
+        $post->price = $request->price;
+        $post->detail = $request->detail;
+        $post->imgpath =$filename;
+        $post->save();
+        return redirect('/');
+
+        \Session::flash('err_msg','投稿しました！');
+        return redirect('/');
+    }
+
+// ＝＝＝＝記事の削除＝＝＝＝
+    public function destroy(Request $request,$id,Post $post) {
+
+        try {
+            Post::destroy($id);
+        } catch(\Throwable $e) {
+            abort(500);
+        }
+
+        return redirect('/');
+
+    }
+
 }
 
 
-
-}

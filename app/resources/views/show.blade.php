@@ -4,41 +4,53 @@
 
 <div class="show_box">
 <img src="{{ asset('storage/' . $post->imgpath) }}" class="show_img">
-<p class="show_name">{{ $post->name }}</p>
-<p>{{ $post->price}}円</p>
-<p>{{ $post->detail}}</p>
-
-@if (Auth::check())
-    @if ($like)
+@if($like)
       <!-- いいね取り消しフォーム -->
       {{ Form::open(
       ([
         'action' =>[
         'hamburgerController@unlike',
-        $post->id, $post->likes_count,
+        $post->id, $like->id,
         ]
         ]
         )
         ) }}
-        <button type="submit">♡ いいね消</button>
+        <button type="submit"><i class="fas fa-heart heart_pink fa-lg"></i></button>
           {{ $post->likes_count }}
 
       {!! Form::close() !!}
-    @endif
-
-      <!-- いいねフォーム -->
+      @else
+      {{-- いいねつける --}}
       {{ Form::model($post, array('action' => array('hamburgerController@like', $post->id))) }}
-        <button type="submit" ><i class="far fa-heart"></i>いいね</button>
-          {{ $post->likes_count }}
+    <button type="submit" ><i class="far fa-heart heart_gray fa-lg"></i></button>
+    {{ $post->likes_count }}
 
-      {!! Form::close() !!}
+    {!! Form::close() !!}
+      @endif
+<p class="show_name">{{ $post->name }}</p>
+<p>{{ $post->price}}円</p>
+<p>{{ $post->detail}}</p>
 
-@endif
-<a href="{{ route('post_edit',[$post->id]) }}" style="color:blue;">編集</a>
+
+<a href="{{ route('post_edit',$post->id) }}" style="color:blue;">編集</a>
+<form action="{{ route('post_destroy',$post->id) }}" method="post" onsubmit="return checkDelete()" enctype='multipart/form-data'>
+    {{ csrf_field() }}
+<button type="submit">削除</button>
 
 </div>
 
 
+
+<script>
+    function checkDelete() {
+        if(window.confirm('削除してよろしいですか？')){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+</script>
 
 
 @endsection

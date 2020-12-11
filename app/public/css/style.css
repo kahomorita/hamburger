@@ -35,15 +35,21 @@ body {
 }
 
 .box_wrap {
-    padding: 20px;
+    padding: 30px;
 }
 
 .box {
+    width: 100%;
+    margin: 0px auto;
+}
+
+.post_box {
     padding: 10px;
-    background: #ffffff;
-    width: 300px;
-    margin: 50px auto;
-    box-shadow: 5px 5px 5px rgba(0,0,0,0.4);
+    min-width: 300px;
+    width: 33%;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 0 auto;
 }
 
 .box a {
@@ -57,8 +63,9 @@ body {
 
 
 .post_img {
+    height: 300px;
+
     width: 100%;
-    height: 250px;
     object-fit: cover;
     display: block;
     margin: 0 auto;
@@ -105,6 +112,7 @@ input,textarea {
 }
 
 
+
 /* ＝＝＝＝詳細ページ＝＝＝＝ */
 
 .show_box .show_name {
@@ -119,8 +127,28 @@ input,textarea {
     display: block;
 }
 
-.fa-heart {
+.heart_pink {
     color: #df5093;
+}
+
+.heart_gray {
+    color: gray;
+}
+
+.like_heart {
+    display: block;
+    margin: 0 0 0 auto;
+}
+
+
+/* ＝＝＝＝edit(編集ページ)＝＝＝＝ */
+
+.edit_img {
+    height: 400px;
+    min-width: 400px;
+    width: 65%;
+    object-fit: cover;
+    margin-bottom: 50px;
 }
 
 
