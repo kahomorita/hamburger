@@ -1,5 +1,65 @@
 /* ＝＝＝＝＝リセット＝＝＝＝＝ */
 
+/* RESET
+------------------------*/
+
+a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, caption, canvas, center, cite, code, dd, del, details, dfn, dialog, div, dl, dt, em, embed, figure, fieldset, figcaption, figure, form, footer, header, hgroup, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, main, small, span, strike, strong, sub, summary, sup, tt, table, tbody, tfoot, thead, time, tr, th, td, u, ul, var, video {
+    font-family: inherit;
+    font-size: 100%;
+    font-weight: inherit;
+    font-style: inherit;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    vertical-align: baseline;
+    white-space: normal;
+    border: 0;
+    outline: 0;
+    background: transparent;
+  }
+
+  article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, main {
+    display: block;
+  }
+
+  ol, ul {
+    list-style: none;
+  }
+
+  blockquote, q {
+    quotes: none;
+  }
+
+  table {
+    border-spacing: 0;
+    border-collapse: collapse;
+  }
+
+  input[type="search"] {
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", メイリオ, Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: #333;
+    text-size-adjust: 100%;
+    background: #EDF0F4;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+  }
+
 button{
     background-color: transparent;
     border: none;
@@ -9,7 +69,7 @@ button{
     appearance: none;
 }
 
-
+/* ＝＝＝＝トップページ＝＝＝ */
 
 body {
 
@@ -23,7 +83,7 @@ body {
     width: 100%;
     max-width: 2000px;
     opacity: 0.5;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
 }
 
 .img_logo {
@@ -34,31 +94,28 @@ body {
     font-size: 24px;
 
 }
-.box {
-    width: 100%;
-    margin: 0px auto;
-
-}
 
 .post_box {
-    padding: 10px;
+    margin: 10px;
     min-width: 315px;
-    width: 33%;
+    width: 30%;
     justify-content: space-around;
     flex-wrap: wrap;
     margin: 0 auto;
+    position: relative;
 }
 
-.box a {
-    color: #af3535;
-    font-weight: bold;
+.post_data {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+    padding-left: 10px;
+    background: rgba(0,0,0,0.4);
+
+    position: absolute;
+    bottom: 28px;
+    right: 0;
 }
-
-.box a:hover {
-    color: #d18585;
-}
-
-
 
 .post_img {
     height: 320px;
@@ -69,24 +126,23 @@ body {
     margin: 0 auto;
 }
 
-.post_data {
-    display: flex;
-    justify-content: space-between;
-    padding-right: 10px;
-    padding-left: 10px;
-}
 
 .post_name {
     font-size: 16px;
+    color: #dadada;
+    line-height: 41px;
+    margin-right: 10px;
 }
 
 .date {
     font-size: 12px;
-    color:#7a7a7a;
+    color:#a8a7a7;
+    line-height: 41px;
 }
 
 
 footer {
+    margin-top: 100px;
     height: 200px;
     background:#c23e3e;
 }

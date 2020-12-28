@@ -28,21 +28,32 @@ class hamburgerController extends Controller
 
 
 // ＝＝＝＝記事投稿＝＝＝＝
+
+    // public function postValidates(Request $request)
+    // {
+    //     $validator = Validator::make($request->all(), [
+    //         'name'=>'required|max:20',
+    //         'price'=>'required',
+    //         'detail'=>'required|max:500',
+    //         'imgpath' => 'required|file|image|mimes:jpeg,png,jpg,gif|max:2048',
+    //         'city'=>'required',
+    //     ]);
+    // }
     public function store(Request $request) {
 
         $posts = DB::select('select * from posts');
 
-        //バリデーション
+        // バリデーション
         $validatedData = [
             'name'=>'required|max:20',
-            'price'=>'require',
-            'detail'=>'require|max:500',
-            'imgpath' => 'required|file|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'city'=>'require',
+            'price'=>'required',
+            'detail'=>'required|max:500',
+            'imgpath' => 'file|mimes:jpeg,png,jpg,bmb|max:2048',
+            'city'=>'required',
         ];
 
         $this->validate($request, $validatedData);
-        //ここまで
+        // ここまで
 
         $filename='';
         if($request->hasFile('image')) {
@@ -62,6 +73,8 @@ class hamburgerController extends Controller
         values(:user_id,:name,:price,:detail,:imgpath,:city,:created_at)',$item);
 
         return redirect('/');
+
+
     }
 
 

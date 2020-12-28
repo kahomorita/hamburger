@@ -13,11 +13,11 @@
 			   <div class="d-flex flex-wrap box_wrap">
                    @foreach($posts as $post)
                    <div class="post_box">
-					   <div class="box">
+					   {{-- <div class="box"> --}}
                             <a href="{{ route('hamburger.show',[$post->id]) }}">
                                     <img src="storage/{{$post->imgpath}}" class="post_img"><br>
                             </a>
-                        </div>
+                        {{-- </div> --}}
                         <div class="post_data">
                         <p class="post_name">{{$post->name}}</p>
                         @php
