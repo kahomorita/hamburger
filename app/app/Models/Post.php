@@ -9,13 +9,9 @@ use App\Models\User;
 class Post extends Model
 {
 
-    protected $fillable = [
-        'name', 'price', 'detail','imgpath',
-    ];
-
-    protected $dates = [
-        'public_date',
-    ];
+    // protected $fillable = [
+    //     'name', 'price', 'detail','imgpath',
+    // ];
 
     public function likes()
     {
@@ -34,6 +30,9 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-
+// ＝＝＝＝city名取得＝＝＝＝
+public function getCityNameAttribute() {
+    return config('city.'.$this->city);
+}
 
 }

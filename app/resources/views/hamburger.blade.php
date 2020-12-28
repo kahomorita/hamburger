@@ -14,16 +14,17 @@
                    @foreach($posts as $post)
                    <div class="post_box">
 					   <div class="box">
-                        <a href="{{ route('hamburger.show',[$post->id]) }}">
-                                <img src="storage/{{$post->imgpath}}" class="post_img"><br>
+                            <a href="{{ route('hamburger.show',[$post->id]) }}">
+                                    <img src="storage/{{$post->imgpath}}" class="post_img"><br>
                             </a>
                         </div>
-
-                        <p>{{$post->name}}</p>
+                        <div class="post_data">
+                        <p class="post_name">{{$post->name}}</p>
                         @php
-                            $day = new DateTime($post->updated_at);
+                            $day = new DateTime($post->created_at);
                         @endphp
-                        <p>{{$day->format('Y.m.d')}}</p>
+                        <p class="date">{{$day->format('Y.m.d')}}</p>
+                        </div>
                     </div>
                     @endforeach
                 </div>

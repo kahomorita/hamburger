@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PostFormRequest;
 use Illuminate\Support\Facades\DB;
 use App\Models\Detail;
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -25,13 +26,23 @@ class hamburgerController extends Controller
         return view('form');
     }
 
+
 // ＝＝＝＝記事投稿＝＝＝＝
     public function store(Request $request) {
 
-        \DB::beginTransaction();
-        try {
         $posts = DB::select('select * from posts');
 
+        //バリデーション
+        $validatedData = [
+            'name'=>'required|max:20',
+            'price'=>'require',
+            'detail'=>'require|max:500',
+            'imgpath' => 'required|file|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'city'=>'require',
+        ];
+
+        $this->validate($request, $validatedData);
+        //ここまで
 
         $filename='';
         if($request->hasFile('image')) {
@@ -44,23 +55,19 @@ class hamburgerController extends Controller
             'price'=>$request->price,
             'detail'=>$request->detail,
             'imgpath'=>$filename,
+            'city'=>$request->city,
+            'created_at'=>now()
         ];
-        DB::insert('insert into posts(user_id,name,price,detail,imgpath)
-        values(:user_id,:name,:price,:detail,:imgpath)',$item);
-        \DB::commit();
+        DB::insert('insert into posts(user_id,name,price,detail,imgpath,city,created_at)
+        values(:user_id,:name,:price,:detail,:imgpath,:city,:created_at)',$item);
 
-        } catch(\Throwable $e) {
-        \DB::rollback();
-        abort(500);
-    }
-
-        \Session::flash('err_msg','投稿しました！');
         return redirect('/');
     }
 
 
 // ＝＝＝＝投稿詳細画面表示＝＝＝＝＝
     public function show(Request $request,$id,Post $post) {
+
 
         $authUser = Auth::user();
         $post = Post::find($id);
@@ -73,6 +80,8 @@ class hamburgerController extends Controller
             'like' => $like,
         ]);
     }
+
+
 
 
 // ＝＝＝＝いいねをつける＝＝＝＝
@@ -114,6 +123,7 @@ class hamburgerController extends Controller
 
         $post = Post::find($id);
 
+
         if(is_null($post)) {
             \Session::flash('err_msg','データがありません。');
             return redirect(route('hamburger.show'));
@@ -125,6 +135,7 @@ class hamburgerController extends Controller
 
 // ＝＝＝＝編集して記事の更新＝＝＝＝
     public function update(Request $request) {
+
 
         $filename='';
 
@@ -139,6 +150,7 @@ class hamburgerController extends Controller
         $post->price = $request->price;
         $post->detail = $request->detail;
         $post->imgpath =$filename;
+        $post->timestamps = false;
         $post->save();
         return redirect('/');
 
@@ -149,6 +161,7 @@ class hamburgerController extends Controller
 // ＝＝＝＝記事の削除＝＝＝＝
     public function destroy(Request $request,$id,Post $post) {
 
+
         try {
             Post::destroy($id);
         } catch(\Throwable $e) {
@@ -158,6 +171,14 @@ class hamburgerController extends Controller
         return redirect('/');
 
     }
+
+    // public function __construct()
+    // {
+    //     $this->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
+    //     // 追加
+    //     $this->middleware('can:edit,post')->only(['edit', 'update']);
+    //     $this->middleware('verified')->only('create');
+    // }
 
 }
 

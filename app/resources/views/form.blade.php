@@ -23,7 +23,7 @@
         @endif
 
         <p>場所</p>
-        <select>
+        <select name="city">
         @foreach(config('city') as $index => $city)
             <option value="{{ $index }}">{{ $city }}</option>
         @endforeach

@@ -21,8 +21,9 @@ body {
 
 .main_img {
     width: 100%;
-    max-width: 1190px;
+    max-width: 2000px;
     opacity: 0.5;
+    margin-bottom: 50px;
 }
 
 .img_logo {
@@ -33,19 +34,15 @@ body {
     font-size: 24px;
 
 }
-
-.box_wrap {
-    padding: 30px;
-}
-
 .box {
     width: 100%;
     margin: 0px auto;
+
 }
 
 .post_box {
     padding: 10px;
-    min-width: 300px;
+    min-width: 315px;
     width: 33%;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -62,20 +59,32 @@ body {
 }
 
 
+
 .post_img {
-    height: 300px;
+    height: 320px;
 
     width: 100%;
     object-fit: cover;
     display: block;
     margin: 0 auto;
-  }
-
-.hamburger_icon {
-    width: 24px;
-    margin-right: 10px;
-    margin-left: 10px;
 }
+
+.post_data {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.post_name {
+    font-size: 16px;
+}
+
+.date {
+    font-size: 12px;
+    color:#7a7a7a;
+}
+
 
 footer {
     height: 200px;
@@ -85,7 +94,7 @@ footer {
 
 /* =====投稿画面（form.blade.php）===== */
 
-.form_box,.show_box{
+.form_box,.wrap_show_box{
     width: 90%;
     background: #ffffff;
     margin: 50px auto;
@@ -121,8 +130,8 @@ input,textarea {
 }
 
 .show_img {
-    width: 100%;
-    margin: 0 auto;
+    width: 80%;
+    /* margin: 0 auto; */
     margin-bottom: 20px;
     display: block;
 }
@@ -139,6 +148,22 @@ input,textarea {
     display: block;
     margin: 0 0 0 auto;
 }
+
+.edit {
+    display: flex;
+    margin-top: 50px;
+}
+
+.edit button {
+    display: block;
+    margin: 0 10px 0 auto;
+    color: #525252;
+}
+
+.edit button:hover {
+    opacity: 0.5;
+}
+
 
 
 /* ＝＝＝＝edit(編集ページ)＝＝＝＝ */
