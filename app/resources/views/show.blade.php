@@ -27,14 +27,14 @@
             {{ $post->likes_count }}
 
         {!! Form::close() !!}
-      @else
+        @else
         {{-- いいねつける --}}
         {{ Form::model($post, array('action' => array('hamburgerController@like', $post->id))) }}
         <button type="submit" ><i class="far fa-heart heart_gray fa-lg"></i></button>
         {{ $post->likes_count }}
 
         {!! Form::close() !!}
-      @endif
+        @endif
     </div>
 </div>
 @can('edit', $post)
@@ -61,7 +61,6 @@
             return false;
         }
     }
-
 </script>
 
 

@@ -1,4 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);
+@charset "UTF-8";
 
 /*!
  * Bootstrap v4.5.2 (https://getbootstrap.com/)
@@ -4405,6 +4406,14 @@ input[type=button].btn-block {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+}
+
+.post_button {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 20px;
 }
 
 .nav-link:hover,
@@ -4494,7 +4503,7 @@ input[type=button].btn-block {
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem;
-  background: #c23e3e;
+  background: #333333;
 }
 
 .navbar .container,
@@ -4514,7 +4523,7 @@ input[type=button].btn-block {
   padding-top: 0.32rem;
   padding-bottom: 0.32rem;
   margin-right: 1rem;
-  font-size: 1.125rem;
+  font-size: 0.8rem;
   line-height: inherit;
   white-space: nowrap;
 }

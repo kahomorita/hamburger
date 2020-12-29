@@ -13,9 +13,9 @@
 
 Route::redirect('/', '/hamburgers');
 Route::get(   '/hamburgers', 'hamburgerController@index')->middleware('auth');
-Route::get(   '/hamburgers/create', 'hamburgerController@create')->name('hamburgers.create');
-Route::post(  '/hamburgers', 'hamburgerController@store')->name('hamburger.store');
-Route::get(   '/hamburgers/{id}','hamburgerController@show')->name('hamburger.show');
+Route::get(   '/hamburgers/create', 'hamburgerController@create');
+Route::post(  '/hamburgers', 'hamburgerController@store')->name('hamburger_store');
+Route::get(   '/hamburgers/{id}','hamburgerController@show')->name('hamburger_show');
 Route::get(   '/hamburgers/edit/{id}','hamburgerController@edit')->name('post_edit');
 Route::post(  '/hamburgers/update','hamburgerController@update')->name('post_update');
 Route::post(  '/hamburgers/destroy/{id}','hamburgerController@destroy')->name('post_destroy');

@@ -20,18 +20,15 @@ class Like extends Model
 
     protected $fillable = ['user_id', 'post_id'];
 
-
-
     //いいねしている投稿
     public function Post()
     {
-      return $this->belongsTo('App\Models\Post');
+        return $this->belongsTo('App\Models\Post');
     }
-
 
     //いいねしているユーザー
     public function User()
     {
-      return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 }

@@ -51,7 +51,8 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown d-flex">
+                                <i class="far fa-user fa-lg"></i>
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
@@ -71,7 +72,7 @@
                             </li>
                         @endguest
                         <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/hamburgers/create') }}"><i class="far fa-plus-square fa-2x"></i></a>
+                                <a class="post_button" href="{{ url('/hamburgers/create') }}">+</a>
                         </li>
                     </ul>
                 </div>

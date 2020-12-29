@@ -8,11 +8,6 @@ use App\Models\User;
 
 class Post extends Model
 {
-
-    // protected $fillable = [
-    //     'name', 'price', 'detail','imgpath',
-    // ];
-
     public function likes()
     {
         return $this->hasMany(Like::class);
@@ -20,10 +15,8 @@ class Post extends Model
 
     public function like_by()
     {
-      return Like::where('user_id', \Auth::user()->id)->get();
+        return Like::where('user_id', \Auth::user()->id)->get();
     }
-
-
 
     public function user()
     {
@@ -31,8 +24,9 @@ class Post extends Model
     }
 
 // ＝＝＝＝city名取得＝＝＝＝
-public function getCityNameAttribute() {
-    return config('city.'.$this->city);
-}
+    public function getCityNameAttribute()
+    {
+        return config('city.'.$this->city);
+    }
 
 }

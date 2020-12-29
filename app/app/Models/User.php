@@ -45,7 +45,7 @@ class User extends Authenticatable
     //ユーザーがいいねしている投稿
     public function likes()
     {
-      return $this->hasMany(Like::class);
+        return $this->hasMany(Like::class);
     }
 
 

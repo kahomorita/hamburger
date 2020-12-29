@@ -17,7 +17,6 @@ class hamburgerController extends Controller
     public function index(Request $request) {
 
         $posts = DB::select('select * from posts');
-        // $posts = Post::Paginate(6);
         return view('hamburger',['posts'=>$posts]);
     }
 
@@ -26,19 +25,6 @@ class hamburgerController extends Controller
         return view('form');
     }
 
-
-// ＝＝＝＝記事投稿＝＝＝＝
-
-    // public function postValidates(Request $request)
-    // {
-    //     $validator = Validator::make($request->all(), [
-    //         'name'=>'required|max:20',
-    //         'price'=>'required',
-    //         'detail'=>'required|max:500',
-    //         'imgpath' => 'required|file|image|mimes:jpeg,png,jpg,gif|max:2048',
-    //         'city'=>'required',
-    //     ]);
-    // }
     public function store(Request $request) {
 
         $posts = DB::select('select * from posts');
@@ -57,9 +43,9 @@ class hamburgerController extends Controller
 
         $filename='';
         if($request->hasFile('image')) {
-
             $filename=$request->file('image')->store('/img',['disk'=>'public']);
         }
+
         $item = [
             'user_id'=>Auth::id(),
             'name'=>$request->name,
@@ -69,18 +55,16 @@ class hamburgerController extends Controller
             'city'=>$request->city,
             'created_at'=>now()
         ];
+
         DB::insert('insert into posts(user_id,name,price,detail,imgpath,city,created_at)
         values(:user_id,:name,:price,:detail,:imgpath,:city,:created_at)',$item);
 
         return redirect('/');
-
-
     }
 
 
 // ＝＝＝＝投稿詳細画面表示＝＝＝＝＝
     public function show(Request $request,$id,Post $post) {
-
 
         $authUser = Auth::user();
         $post = Post::find($id);
@@ -123,7 +107,7 @@ class hamburgerController extends Controller
 
             Like::findOrFail($likeId)->delete();
             return redirect()
-            ->route('hamburger.show', $postId);
+            ->route('hamburger_show', $postId);
 
         }catch(Exception $e){
             dd($e);
@@ -136,10 +120,9 @@ class hamburgerController extends Controller
 
         $post = Post::find($id);
 
-
         if(is_null($post)) {
-            \Session::flash('err_msg','データがありません。');
-            return redirect(route('hamburger.show'));
+            // \Session::flash('err_msg','データがありません。');
+            return redirect(route('hamburger_show'));
         }
 
         return view('edit',['post'=>$post]);
@@ -148,7 +131,6 @@ class hamburgerController extends Controller
 
 // ＝＝＝＝編集して記事の更新＝＝＝＝
     public function update(Request $request) {
-
 
         $filename='';
 
@@ -162,18 +144,19 @@ class hamburgerController extends Controller
         $post->name = $request->name;
         $post->price = $request->price;
         $post->detail = $request->detail;
-        $post->imgpath =$filename;
+        if($filename) {
+            $post->imgpath =$filename;
+        }
         $post->timestamps = false;
         $post->save();
         return redirect('/');
 
-        \Session::flash('err_msg','投稿しました！');
+        // \Session::flash('err_msg','投稿しました！');
         return redirect('/');
     }
 
 // ＝＝＝＝記事の削除＝＝＝＝
     public function destroy(Request $request,$id,Post $post) {
-
 
         try {
             Post::destroy($id);
@@ -184,14 +167,6 @@ class hamburgerController extends Controller
         return redirect('/');
 
     }
-
-    // public function __construct()
-    // {
-    //     $this->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
-    //     // 追加
-    //     $this->middleware('can:edit,post')->only(['edit', 'update']);
-    //     $this->middleware('verified')->only('create');
-    // }
 
 }
 

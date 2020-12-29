@@ -73,26 +73,31 @@ button{
 
 body {
 
-    background: #f1e4c6;
+    background: #333333;
 }
 .container_box {
     position: relative;
 }
 
+.fa-user {
+    line-height: 44px;
+    color: #ffffff;
+}
+
+.main_img_box {
+    background-image: url("tophamburger.jpg");
+}
+
+.main_logo {
+    color: #ffffff;
+    font-size: 26px;
+}
+
 .main_img {
     width: 100%;
     max-width: 2000px;
-    opacity: 0.5;
+    max-height: 500px;
     margin-bottom: 100px;
-}
-
-.img_logo {
-    color:#ffffff;
-    position: absolute;
-    top:15%;
-    left:10%;
-    font-size: 24px;
-
 }
 
 .post_box {
