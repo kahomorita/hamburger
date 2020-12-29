@@ -14,12 +14,13 @@ use Illuminate\Support\Facades\Auth;
 class hamburgerController extends Controller
 {
 
-    public function index(Request $request) {
+    public function index() {
 
         $posts = DB::select('select * from posts');
         return view('hamburger',['posts'=>$posts]);
     }
 
+     //何をクリエイトするかわからないのでわかりやすいメソッド名を！
     public function create() {
 
         return view('form');
@@ -51,7 +52,7 @@ class hamburgerController extends Controller
             'name'=>$request->name,
             'price'=>$request->price,
             'detail'=>$request->detail,
-            'imgpath'=>$filename,
+            'img_path'=>$filename,
             'city'=>$request->city,
             'created_at'=>now()
         ];
@@ -86,7 +87,7 @@ class hamburgerController extends Controller
 
         Like::create(
             array(
-            'user_id' => Auth::user()->id,
+            'user_id' => Auth::id(),
             'post_id' => $postId
             )
         );
@@ -139,6 +140,10 @@ class hamburgerController extends Controller
             $filename=$request->file('image')->store('/img',['disk'=>'public']);
         }
 
+        //下のsaveまでの内容この二行でできるかもフォームのnameとかをDBのカラムに一致させておけばこんな感じですっきりいけます！
+        //filenameは一手間いるかな？
+        //        $update_data = $request->all();
+        //        $post = Post::find($request->id)->update($update_data);
         $post = Post::find($request->id);
         $post->user_id = Auth::id();
         $post->name = $request->name;
@@ -151,6 +156,7 @@ class hamburgerController extends Controller
         $post->save();
         return redirect('/');
 
+        //ここから下は不要ですね！
         // \Session::flash('err_msg','投稿しました！');
         return redirect('/');
     }
@@ -159,6 +165,7 @@ class hamburgerController extends Controller
     public function destroy(Request $request,$id,Post $post) {
 
         try {
+            //これは物理削除なので、論理削除ってのも覚えておくといいかも！laravel softdeleteで調べるとで的mさう！
             Post::destroy($id);
         } catch(\Throwable $e) {
             abort(500);

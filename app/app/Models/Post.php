@@ -13,9 +13,10 @@ class Post extends Model
         return $this->hasMany(Like::class);
     }
 
-    public function like_by()
+    //メソッド名はローワーキャメルケース！
+    public function likeBy()
     {
-        return Like::where('user_id', \Auth::user()->id)->get();
+        return Like::where('user_id', \Auth::id())->get();
     }
 
     public function user()

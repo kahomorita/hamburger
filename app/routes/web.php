@@ -11,6 +11,8 @@
 |
 */
 
+//果たしてhamburgersという文字は必要だったのか、、、
+//route名も一発でわかる名前にできるとより良いですね！
 Route::redirect('/', '/hamburgers');
 Route::get(   '/hamburgers', 'hamburgerController@index')->middleware('auth');
 Route::get(   '/hamburgers/create', 'hamburgerController@create');

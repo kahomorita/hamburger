@@ -14,6 +14,7 @@
         <p>{{ $post->detail}}</p>
         @if($like)
         <!-- いいね取り消しフォーム -->
+{{--        ヤバイ！このフォームの作り方は特殊すぎる、、、、教科書とかのやり方をお勧めします、、--}}
         {{ Form::open(
         ([
             'action' =>[
@@ -42,6 +43,7 @@
 <div class="edit">
     <button type="button" onclick="window.location='{{ route('post_edit',$post->id) }}'">編集</button>
     <form action="{{ route('post_destroy',$post->id) }}" method="post" onsubmit="return checkDelete()" enctype='multipart/form-data'>
+{{--        おおお情報が古い--＠csrfとかで行けるかと}}
         {{ csrf_field() }}
     <button type="submit" style="color:#af3535;">削除</button>
 </div>
