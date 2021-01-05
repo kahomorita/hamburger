@@ -7,7 +7,7 @@
             <p class="new_post">Edit Post</p>
 
 		<form action="{{ route('post_update') }}" method="post" onsubmit="return checkCheck()" enctype='multipart/form-data'>
-            {{ csrf_field() }}
+            @csrf
             <input type="hidden" name="id" value="{{$post->id}}">
             <p>商品名</p><input type="text" name="name" value="{{$post->name}}"><br>
             <p>値段</p><input type="text" name="price" value="{{$post->price}}"><br>
@@ -18,7 +18,7 @@
                 <option value="{{ $index }}">{{ $name }}</option>
             @endforeach
             </select>
-            <input type="file" name="image"><img class="edit_img" src='{{ asset('storage/' . $post->imgpath) }}'><br>
+            <input type="file" name="image"><img class="edit_img" src='{{ asset('storage/' . $post->img_path) }}'><br>
             <input type="submit" value="更新する">
         </form>
 

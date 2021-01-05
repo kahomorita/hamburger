@@ -85,12 +85,26 @@ body {
 }
 
 .main_img_box {
-    background-image: url("tophamburger.jpg");
+    background-image: url("top_hamburger.jpg");
+    background-size: 100% auto;
+    background-repeat:no-repeat;
+    background-position:center center;
+    max-width: 100%;
+    min-width: 700px;
+    height: 600px;
+    padding-bottom: 50px;
+    margin-bottom: 50px;
 }
 
 .main_logo {
     color: #ffffff;
-    font-size: 26px;
+    font-size: 30px;
+    line-height: 570px;
+    padding-left: 60px;
+}
+
+.main_logo span {
+    font-size: 50px;
 }
 
 .main_img {
@@ -149,7 +163,7 @@ body {
 footer {
     margin-top: 100px;
     height: 200px;
-    background:#c23e3e;
+    background:#161616;
 }
 
 
@@ -241,7 +255,7 @@ input,textarea {
 /* ＝＝＝＝footer＝＝＝＝ */
 
 footer {
-    padding: 100px 50px;
+    padding: 100px;
 }
 
 footer p {
@@ -249,8 +263,9 @@ footer p {
 }
 
 .TOP{
-    text-align: right;
+    text-align: center;
     display: block;
+    font-size: 16px;
 }
 
 .fa-home {

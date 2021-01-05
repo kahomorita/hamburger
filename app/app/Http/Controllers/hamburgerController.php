@@ -14,13 +14,13 @@ use Illuminate\Support\Facades\Auth;
 class hamburgerController extends Controller
 {
 
-    public function index(Request $request) {
+    public function index() {
 
         $posts = DB::select('select * from posts');
         return view('hamburger',['posts'=>$posts]);
     }
 
-    public function create() {
+    public function postHamburgerInformation() {
 
         return view('form');
     }
@@ -34,7 +34,7 @@ class hamburgerController extends Controller
             'name'=>'required|max:20',
             'price'=>'required',
             'detail'=>'required|max:500',
-            'imgpath' => 'file|mimes:jpeg,png,jpg,bmb|max:2048',
+            'img_path' => 'file|mimes:jpeg,png,jpg,bmb|max:2048',
             'city'=>'required',
         ];
 
@@ -51,13 +51,13 @@ class hamburgerController extends Controller
             'name'=>$request->name,
             'price'=>$request->price,
             'detail'=>$request->detail,
-            'imgpath'=>$filename,
+            'img_path'=>$filename,
             'city'=>$request->city,
             'created_at'=>now()
         ];
 
-        DB::insert('insert into posts(user_id,name,price,detail,imgpath,city,created_at)
-        values(:user_id,:name,:price,:detail,:imgpath,:city,:created_at)',$item);
+        DB::insert('insert into posts(user_id,name,price,detail,img_path,city,created_at)
+        values(:user_id,:name,:price,:detail,:img_path,:city,:created_at)',$item);
 
         return redirect('/');
     }
@@ -69,7 +69,7 @@ class hamburgerController extends Controller
         $authUser = Auth::user();
         $post = Post::find($id);
 
-        $like = $post->likes()->where('user_id', Auth::user()->id)->first();
+        $like = $post->likes()->where('user_id', Auth::id())->first();
 
         return view ('show',[
             'authUser' => $authUser,
@@ -86,7 +86,7 @@ class hamburgerController extends Controller
 
         Like::create(
             array(
-            'user_id' => Auth::user()->id,
+            'user_id' => Auth::id(),
             'post_id' => $postId
             )
         );
@@ -145,13 +145,10 @@ class hamburgerController extends Controller
         $post->price = $request->price;
         $post->detail = $request->detail;
         if($filename) {
-            $post->imgpath =$filename;
+            $post->img_path =$filename;
         }
         $post->timestamps = false;
         $post->save();
-        return redirect('/');
-
-        // \Session::flash('err_msg','投稿しました！');
         return redirect('/');
     }
 

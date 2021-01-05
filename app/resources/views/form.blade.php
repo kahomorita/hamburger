@@ -6,7 +6,7 @@
 	<div class="form_box">
         <p class="new_post">New Post</p>
         <form action="{{ route('hamburger_store') }}" method="post" onsubmit="return checkCheck()" enctype='multipart/form-data'>
-            {{ csrf_field() }}
+            @csrf
             <p>商品名</p><input type="text" name="name"><br>
             @if($errors->has('name'))
                 <div style="color:red;">{{$errors->first('name')}}</div>

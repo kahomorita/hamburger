@@ -59,8 +59,8 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                        onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -83,11 +83,9 @@
             @yield('content')
         </main>
     </div>
-    <footer><p><i class="fas fa-star"></i><i class="fas fa-star" style="color: #163ff3;"></i><i class="fas fa-star"></i>
-    Osaka hamburger
-    <i class="fas fa-star"></i><i class="fas fa-star" style="color: #163ff3;"></i><i class="fas fa-star"></i></p>
+    <footer>
         <div class="TOP">
-            <i class="fas fa-home fa-2x"></i><a href="{{ url('/hamburgers') }}">TOP</a>
+            <i class="fas fa-home"></i><a href="{{ url('/hamburgers') }}">TOP</a>
         </div>
     </footer>
 </body>

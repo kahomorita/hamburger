@@ -23,7 +23,7 @@ class Like extends Model
     //いいねしている投稿
     public function Post()
     {
-        return $this->belongsTo('App\Models\Post');
+        return $this->belongsTo(Post::class);
     }
 
     //いいねしているユーザー

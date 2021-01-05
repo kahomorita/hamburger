@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('name',100);
             $table->integer('price');
             $table->string('detail',500);
-            $table->blob('imgpath',200);
+            $table->blob('img_path',200);
         });
     }
 
