@@ -85,7 +85,7 @@
     </div>
     <footer>
         <div class="TOP">
-            <i class="fas fa-home"></i><a href="{{ url('/hamburgers') }}">TOP</a>
+            <a href="{{ url('/hamburgers') }}">OsakaHamburger</a>
         </div>
     </footer>
 </body>

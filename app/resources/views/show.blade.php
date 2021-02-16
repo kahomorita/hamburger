@@ -11,6 +11,7 @@
         <p class="show_name">{{ $post->name }}</p>
         <p class="show_info">{{ $post->price}}円</p>
         <p class="show_info">{{ $post->city_name }}</p>
+        <p class="show_info">{{ $post->store_name }}</p>
         <p>{{ $post->detail}}</p>
         @if($like)
         <!-- いいね取り消しフォーム -->

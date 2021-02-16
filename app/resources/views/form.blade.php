@@ -22,6 +22,11 @@
                 <div style="color:red;">{{$errors->first('detail')}}</div>
             @endif
 
+            <p>店の名前</p><input type="text" name="store_name"><br>
+            @if($errors->has('store_name'))
+                <div style="color:red;">{{$errors->first('store_name')}}</div>
+            @endif
+
             <p>場所</p>
             <select name="city">
             @foreach(config('city') as $index => $city)
@@ -29,6 +34,7 @@
             @endforeach
             </select>
 
+            <p>画像</p>
             <input type="file" name="image"><br>
             @if($errors->has('image'))
                 <div style="color:red;">{{$errors->first('photo')}}</div>

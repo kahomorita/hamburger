@@ -31,9 +31,10 @@ class hamburgerController extends Controller
 
         // バリデーション
         $validatedData = [
-            'name'=>'required|max:20',
+            'name'=>'required|max:255',
             'price'=>'required',
             'detail'=>'required|max:500',
+            'store_name'=>'required|max:255',
             'img_path' => 'file|mimes:jpeg,png,jpg,bmb|max:2048',
             'city'=>'required',
         ];
@@ -52,12 +53,13 @@ class hamburgerController extends Controller
             'price'=>$request->price,
             'detail'=>$request->detail,
             'img_path'=>$filename,
+            'store_name'=>$request->store_name,
             'city'=>$request->city,
             'created_at'=>now()
         ];
 
-        DB::insert('insert into posts(user_id,name,price,detail,img_path,city,created_at)
-        values(:user_id,:name,:price,:detail,:img_path,:city,:created_at)',$item);
+        DB::insert('insert into posts(user_id,name,price,detail,img_path,store_name,city,created_at)
+        values(:user_id,:name,:price,:detail,:img_path,:store_name,:city,:created_at)',$item);
 
         return redirect('/');
     }

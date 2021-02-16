@@ -2,7 +2,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="container_box">
         <div class="main_img_box">
             {{-- <img src="img/tophamburger.jpg" class="main_img"> --}}

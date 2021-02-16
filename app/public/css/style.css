@@ -170,14 +170,19 @@ footer {
 /* =====投稿画面（form.blade.php）===== */
 
 .form_box,.wrap_show_box{
-    width: 90%;
+    width: 80%;
     background: #ffffff;
     margin: 50px auto;
-    padding:100px;
+    padding:120px;
 }
 
 .form_box p ,.show_box p{
     color: #a5a5a5;
+}
+
+form p {
+    display: block;
+    margin: 0 auto;
 }
 
 .form_box .new_post {
@@ -186,14 +191,30 @@ footer {
     color: #c23e3e;
 }
 
-input,textarea,select {
-    margin-bottom: 30px;
+input,textarea {
+    line-height: 40px;
+    width: 100%;
+    display: block;
+    margin: 0 auto;
 }
 
-input,textarea {
-    width: 100%;
-    line-height: 40px;
+select {
+    height: 40px;
+    margin-bottom: 20px;
 }
+
+input[type="submit"] {
+    width: 25%;
+    background: #d65555;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+}
+
+input[type="submit"]:hover {
+    background: #db7777;
+}
+
 
 
 
