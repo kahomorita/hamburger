@@ -20,6 +20,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -88,5 +89,7 @@
             <a href="{{ url('/hamburgers') }}">OsakaHamburger</a>
         </div>
     </footer>
+
+    <script src="{{ asset('./js/main.js') }}"></script>
 </body>
 </html>

@@ -3344,9 +3344,9 @@ input[type=button].btn-block {
   opacity: 0;
 }
 
-.collapse:not(.show) {
-  display: none;
-}
+/* .collapse:not(.show) {
+  display: none; */
+/* } */
 
 .collapsing {
   position: relative;
@@ -4536,7 +4536,7 @@ input[type=button].btn-block {
 
 .navbar-nav {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
