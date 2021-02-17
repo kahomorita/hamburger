@@ -89,7 +89,5 @@
             <a href="{{ url('/hamburgers') }}">OsakaHamburger</a>
         </div>
     </footer>
-
-    <script src="{{ asset('./js/main.js') }}"></script>
 </body>
 </html>
