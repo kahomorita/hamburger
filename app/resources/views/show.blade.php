@@ -15,27 +15,18 @@
         <p>{{ $post->detail}}</p>
         @if($like)
         <!-- いいね取り消しフォーム -->
-        <form action="{{url('/hamburgers/{id}/likes/{like}',$post->id, $like->id)}}">
-        {{-- {{ Form::open(
-        ([
-            'action' =>[
-            'hamburgerController@unlike',
-            $post->id, $like->id,
-            ]
-            ]
-            )
-            ) }} --}}
-            <button type="submit"><i class="fas fa-heart heart_pink fa-lg"></i></button>
-            {{ $post->likes_count }}
-        </form>
-        {{-- {!! Form::close() !!} --}}
+            <form action="{{route('post_unlike',array($post->id,$like->id))}}" method="post">
+                @csrf
+                <button type="submit"><i class="fas fa-heart heart_pink fa-lg"></i></button>
+                {{ $post->likes_count }}
+            </form>
         @else
-        {{-- いいねつける --}}
-        {{ Form::model($post, array('action' => array('hamburgerController@like', $post->id))) }}
-        <button type="submit" ><i class="far fa-heart heart_gray fa-lg"></i></button>
-        {{ $post->likes_count }}
-
-        {!! Form::close() !!}
+            {{-- いいねつける --}}
+            <form action="{{route('post_like',$post->id)}} " method="post">
+                @csrf
+                <button type="submit" ><i class="far fa-heart heart_gray fa-lg"></i></button>
+                {{ $post->likes_count }}
+            </form>
         @endif
     </div>
 </div>
@@ -46,6 +37,7 @@
     <form action="{{ route('post_destroy',$post->id) }}" method="post" onsubmit="return checkDelete()" enctype='multipart/form-data'>
         @csrf
     <button type="submit" style="color:#af3535;">削除</button>
+    </form>
 </div>
 @endcan
 </div>

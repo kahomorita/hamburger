@@ -25,7 +25,7 @@ class hamburgerController extends Controller
         return view('form');
     }
 
-    public function store(Request $request) {
+    public function UpHamburgerDate(Request $request) {
 
         $posts = DB::select('select * from posts');
 
@@ -123,7 +123,6 @@ class hamburgerController extends Controller
         $post = Post::find($id);
 
         if(is_null($post)) {
-            // \Session::flash('err_msg','データがありません。');
             return redirect(route('hamburger_show'));
         }
 
@@ -166,6 +165,13 @@ class hamburgerController extends Controller
         return redirect('/');
 
     }
+
+    // public function delete (Request $request) {
+    //     $post = Post::find($request->id);
+    //     dd($post);
+    //     Post::find($id)->delete();
+    //     return redirect('/');
+    // }
 
 }
 
